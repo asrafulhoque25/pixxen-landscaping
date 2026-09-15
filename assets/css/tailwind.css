@@ -1054,14 +1054,14 @@ html.lenis body {
     /* ================= DESKTOP (>=1024px) ================= */
     .niche__desktop { display: block; }
 
- .niche__pin {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: clamp(3rem, 12vh, 8rem);  
-  padding-bottom: clamp(1.25rem, 6vh, 4.5rem);
-  overflow: hidden;
-}
+    .niche__pin {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: clamp(3rem, 12vh, 8rem);  
+      padding-bottom: clamp(1.25rem, 6vh, 4.5rem);
+      overflow: hidden;
+    }
   .niche__head { padding-left: calc(var(--edge) + 6rem); padding-right: var(--edge); flex: 0 0 auto; }
 
   @media (max-width:1450px) {
