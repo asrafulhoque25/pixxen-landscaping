@@ -886,8 +886,8 @@ html.lenis body {
   position: absolute;
   top: -18px;
   left: -18px;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   background-image: url("../images/landscaping-heading-badge.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -897,20 +897,22 @@ html.lenis body {
   position: absolute;
   top: -18px;
   left: -18px;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   background-image: url("../images/landscaping-heading-badge-green.png");
   background-size: contain;
   background-repeat: no-repeat;
+   /* transform: scale(1.25); */
 }
 
 @media (min-width: 768px) {
   .landscaping-heading-shape::after,
   .landscaping-heading-shape-green::after {
     top: -35px;
-    left: -25px;
+    left: -45px;
     width: 100px;
     height: 100px;
+    transform: scale(.7);
   }
 }
 
@@ -918,17 +920,18 @@ html.lenis body {
   .landscaping-heading-shape::after,
   .landscaping-heading-shape-green::after {
     top: -40px;
-    left: -30px;
+    left: -50px;
     width: 120px;
     height: 120px;
+    transform: scale(.7);
   }
 }
 
 @media (min-width: 1600px) {
   .landscaping-heading-shape::after,
   .landscaping-heading-shape-green::after {
-    top: -80px;
-    left: -55px;
+    top: -60px;
+    left: -60px;
     width: 140px;
     height: 140px;
   }
@@ -1051,13 +1054,14 @@ html.lenis body {
     /* ================= DESKTOP (>=1024px) ================= */
     .niche__desktop { display: block; }
 
-    .niche__pin {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding-block: clamp(1.25rem, 6vh, 4.5rem);
-      overflow: hidden;
-    }
+ .niche__pin {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(3rem, 12vh, 8rem);  
+  padding-bottom: clamp(1.25rem, 6vh, 4.5rem);
+  overflow: hidden;
+}
   .niche__head { padding-left: calc(var(--edge) + 6rem); padding-right: var(--edge); flex: 0 0 auto; }
 
   @media (max-width:1450px) {

@@ -3321,8 +3321,8 @@ html.lenis, html.lenis body {
   position: absolute;
   top: -18px;
   left: -18px;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   background-image: url("../images/landscaping-heading-badge.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -3332,8 +3332,8 @@ html.lenis, html.lenis body {
   position: absolute;
   top: -18px;
   left: -18px;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   background-image: url("../images/landscaping-heading-badge-green.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -3341,23 +3341,25 @@ html.lenis, html.lenis body {
 @media (min-width: 768px) {
   .landscaping-heading-shape::after, .landscaping-heading-shape-green::after {
     top: -35px;
-    left: -25px;
+    left: -45px;
     width: 100px;
     height: 100px;
+    transform: scale(.7);
   }
 }
 @media (min-width: 1024px) {
   .landscaping-heading-shape::after, .landscaping-heading-shape-green::after {
     top: -40px;
-    left: -30px;
+    left: -50px;
     width: 120px;
     height: 120px;
+    transform: scale(.7);
   }
 }
 @media (min-width: 1600px) {
   .landscaping-heading-shape::after, .landscaping-heading-shape-green::after {
-    top: -80px;
-    left: -55px;
+    top: -60px;
+    left: -60px;
     width: 140px;
     height: 140px;
   }
@@ -3456,7 +3458,8 @@ html.lenis, html.lenis body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-block: clamp(1.25rem, 6vh, 4.5rem);
+  padding-top: clamp(3rem, 12vh, 8rem);
+  padding-bottom: clamp(1.25rem, 6vh, 4.5rem);
   overflow: hidden;
 }
 .niche__head {
