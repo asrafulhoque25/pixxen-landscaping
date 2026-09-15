@@ -1,0 +1,1144 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600;700;900&family=Barlow:wght@300;400;500;600;700;800;900&family=Cossette+Texte:wght@400;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-green1: #99fe00;
+  --color-green2: #19cc61;
+  --color-green3: #19914a;
+  --color-green4: #065136;
+  --color-green5: #002417;
+  --color-dark-shade2: #1f382f;
+  --color-dark-shade3: #29473c;
+  --color-dark-shade4: #759187;
+  --color-dark-shade5: #a7bdb5;
+  --color-dark-shade6: #e6e9e8;
+}
+
+.container {
+  max-width: 1535px;
+  width: 100%;
+  margin: auto;
+  padding-inline: 20px;
+}
+@media (max-width: 1445px) {
+  .container {
+    padding-inline: 40px;
+  }
+}
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: 30px;
+  }
+}
+@media (max-width: 640px) {
+  .container {
+    padding-inline: 16px;
+  }
+}
+
+.barlow {
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
+}
+
+.cossette-texte {
+  font-family: "Cossette Texte", sans-serif;
+  font-style: normal;
+}
+.barlow-semi-condensed {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-style: normal;
+}
+
+body {
+  font-family: "Cossette Texte", sans-serif;
+  background-color: #f7f8f6;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Cossette Texte", sans-serif;
+}
+
+/* p{
+    font-weight: 300 !important;
+} */
+
+@layer base {
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.section-padding {
+  padding-block: 96px;
+}
+
+@media (max-width: 1024px) {
+  .section-padding {
+    padding-block: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-padding {
+    padding-block: 48px;
+  }
+}
+
+.leading120 {
+  line-height: 120%;
+}
+
+.leading150 {
+  line-height: 150%;
+}
+
+/* navbar start */
+/* =============================================
+           DESKTOP DROPDOWN — Pixxen figma design
+        ============================================= */
+nav {
+  /* text-transform: uppercase; */
+
+  text-transform: uppercase;
+}
+
+.desktop-dropdown {
+  position: relative;
+}
+
+.desktop-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.desktop-dropdown-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* ── Mega dropdown panel ── */
+.desktop-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background-color: #c9e6c0;
+  /* dark panel bg */
+  border: 1px solid #a6d96a;
+  border-radius: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 626px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.desktop-dropdown:hover .desktop-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ── LEFT: service list ── */
+.dropdown-service-list {
+  /* flex: 0 0 260px; */
+  padding: 24px;
+}
+
+.dropdown-service-list li {
+  margin: 0;
+}
+
+.dropdown-service-list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #0b2518;
+  text-decoration: none;
+  padding: 11px 20px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  text-transform: uppercase;
+  border-radius: 12px;
+  background-color: transparent;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdown-service-list a:hover,
+.dropdown-service-list a.active {
+  background-color: #a6d96a;
+  color: #ffffff;
+}
+
+/* Service icon wrapper */
+
+/* .service-icon svg {
+            width: 18px;
+            height: 18px;
+        } */
+
+/* ── RIGHT: preview grid ── */
+.dropdown-preview {
+  justify-content: end;
+  display: flex;
+  align-items: end;
+}
+
+/* ==============================================
+           MOBILE MENU — 2-panel slide system
+        ============================================== */
+
+/* Dark overlay behind the whole menu */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9990;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Wrapper: holds both panels side by side */
+.mobile-menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.mobile-menu-wrapper.active {
+  pointer-events: all;
+}
+
+/* ── PANEL BASE ── */
+.mm-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  height: 100vh;
+  background: #0b2518;
+  overflow-y: auto;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── PANEL 1: Main Menu ── */
+.mm-main {
+  left: 0;
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu-wrapper.active .mm-main {
+  transform: translateX(0);
+}
+
+.mobile-menu-wrapper.active.services-open .mm-main {
+  transform: translateX(-100%);
+}
+
+/* Main panel header */
+.mm-main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 24px 24px;
+}
+
+.mm-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.mm-close-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mm-close-btn:hover {
+  background: var(--color-teal);
+}
+
+.mm-close-btn:hover svg * {
+  fill: var(--color-dark-shade2) !important;
+}
+
+/* Nav list */
+.mm-nav-list {
+  list-style: none;
+  padding: 16px 0 0 0;
+  margin: 0;
+  flex: 1;
+}
+
+.mm-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  text-transform: uppercase;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.mm-nav-link:hover {
+  color: #a6d96a;
+  background: rgba(153, 254, 0, 0.04);
+}
+
+.mm-nav-link .mm-plus {
+  font-size: 28px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+}
+
+.mm-nav-link:hover .mm-plus {
+  color: #a6d96a;
+}
+
+/* LET'S CONNECT button at bottom */
+.mm-connect-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 24px 0 24px;
+  padding: 16px 24px;
+  background: white;
+  color: #a6d96a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mm-connect-btn:hover {
+  background: #a6d96a;
+}
+
+.mm-connect-btn .mm-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #003b5b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── PANEL 2: Services submenu ── */
+.mm-services {
+  left: 0;
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mobile-menu-wrapper.active.services-open .mm-services {
+  transform: translateX(0);
+}
+
+/* Services panel header */
+.mm-services-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 8px 20px;
+}
+
+.mm-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  transition: color 0.2s ease;
+}
+
+.mm-back-btn:hover {
+  color: #a6d96a;
+}
+
+.mm-services-title {
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+  padding: 16px 20px 20px 20px;
+}
+
+/* 2×3 service cards grid */
+.mm-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.mm-service-card {
+  background: transparent;
+  border-radius: 12px;
+  border: 1px solid #c9e6c0;
+  padding: 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+  cursor: pointer;
+}
+
+.mm-service-card:hover {
+  border-color: rgba(153, 254, 0, 0.35);
+  background: rgba(153, 254, 0, 0.06);
+}
+
+.mm-service-card .card-label {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.mm-service-card:hover .card-label {
+  color: #a6d96a;
+}
+
+/* Decorative grid lines at bottom (subtle) */
+.mm-deco {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .mobile-menu-wrapper,
+  .mobile-overlay {
+    display: none;
+  }
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 888;
+}
+
+/* full width and height menu  */
+
+/* ─── Demo trigger button (your actual navbar button) ─── */
+
+.demo-trigger svg rect {
+  fill: white;
+}
+
+/* ─── 1024px এর নিচে button ও menu সম্পূর্ণ লুকানো ─── */
+@media (max-width: 1023px) {
+  #desktop-sidebar {
+    display: none !important;
+  }
+
+  #pixxen-menu {
+    display: none !important;
+  }
+}
+
+/* ─── FULL PAGE OVERLAY ─── */
+#pixxen-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--dark-shade-1, #002417) 0%,
+    var(--dark-extra-dark, #001b11) 100%
+  );
+}
+
+#pixxen-menu.is-open {
+  pointer-events: all;
+  visibility: visible;
+}
+
+#mobile-menu-toggle {
+  padding: 8px 16px;
+  background-color: #18392b;
+  cursor: pointer;
+  border-right: 1px solid #18392b;
+}
+
+/* ─── TOP PANEL (menu content) ─── */
+.menu-top {
+  flex: 1;
+  background: #0b2518;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* starts above viewport */
+  transform: translateY(-100%);
+}
+
+/* ─── BOTTOM PANEL (logo bar) ─── */
+.menu-bottom {
+  height: 180px;
+  border-top: 1px solid #304d36;
+  background: linear-gradient(180deg, #0b2518 0%, #a6d96a 100%);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding-top: 12px;
+  transform: translateY(100%);
+}
+
+/* ─── Decorative grid lines ─── */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.grid-lines svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.18;
+}
+
+/* ─── TOP-RIGHT button (LET'S CONNECT) ─── */
+.connect-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  z-index: 888;
+}
+
+/* ─── CLOSE BUTTON ─── */
+.close-wrap {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.close-btn {
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.25s,
+    transform 0.25s;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: scale(1.07);
+}
+
+.close-btn svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
+  stroke-width: 2.5;
+}
+
+/* ─── NAV COLUMNS ─── */
+.nav-columns {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  max-width: 750px;
+  width: 100%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.nav-col {
+  min-width: 150px;
+  margin-right: 10px;
+}
+
+.nav-col-title {
+  color: #a6d96a;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  /* 24px */
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.nav-col ul {
+  list-style: none;
+}
+
+.nav-col ul li {
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.nav-col ul li a {
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  /* 125% */
+  text-transform: uppercase;
+  transition: color 0.2s;
+  display: inline-block;
+}
+
+.nav-col ul li a:hover {
+  color: #a6d96a;
+}
+
+/* ─── BOTTOM LOGO ─── */
+.bottom-logo {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 60px;
+}
+
+.logo-icon {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+/* The cross/plus green shape */
+.logo-icon .cross-top {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  width: 36px;
+  height: 36px;
+  background: var(--green1);
+}
+
+.logo-icon .cross-mid {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 90px;
+  height: 36px;
+  background: var(--green1);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    36% 100%,
+    36% 60%,
+    20% 60%,
+    20% 100%,
+    0 100%
+  );
+}
+
+/* ─── Crosshair decorative (top-left) ─── */
+.deco-cross {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* navbar end */
+
+/* banner section start */
+
+.banner-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Icon slider animation */
+.icon-slider {
+  transform: translateX(-19px);
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.mega-reveal-btn:hover .icon-slider {
+  transform: translateX(20px);
+}
+
+/* .mega-reveal-btn:hover .icon-circle {
+    background-color: var(--color-green3);
+} */
+
+/* Text animation */
+.t-up,
+.t-down {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.mega-reveal-btn:hover .t-up,
+.mega-reveal-btn:hover .t-down {
+  transform: translateY(-100%);
+}
+
+@media (max-width: 640px) {
+  .mobile-letconnect.mega-reveal-btn {
+    height: 48px !important;
+  }
+
+  .mega-reveal-btn {
+    height: 52px;
+  }
+}
+
+@media (max-width: 640px) {
+  .icon-circle {
+    height: 22px !important;
+    width: 22px !important;
+  }
+
+  .arrow-icon {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .icon-slider {
+    transform: translateX(-16px);
+  }
+
+  .mega-reveal-btn:hover .icon-slider {
+    transform: translateX(17px);
+  }
+
+  .mega-reveal-btn .btn-inner {
+    gap: 10px !important;
+  }
+}
+
+/* banner section end */
+
+/* smooth scrooll */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Pixxen Landscaping CSS start here */
+
+/* ---- shared wipe mechanics (color values come from modifier classes below) ---- */
+.landscaping-btn-text-wipe,
+.landscaping-btn-text-wipe-outline,
+.landscaping-btn-text-wipe-dark,
+.landscaping-btn-text-wipe-outline2 {
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position 0.6s ease;
+  font-family: "Barlow", sans-serif;
+  font-weight: 700;
+}
+
+/* Primary button text gradient (light -> dark) */
+.landscaping-btn-cta .landscaping-btn-text-wipe {
+  background-image: linear-gradient(to right, #dff2c8 50%, #0b2518 50%);
+}
+
+/* Secondary/Outline button text gradient */
+.landscaping-btn-cta-outline .landscaping-btn-text-wipe-outline {
+  background-image: linear-gradient(to right, #dff2c8 50%, #a6d96a 50%);
+}
+
+/* Dark button text gradient */
+.landscaping-btn-cta-dark .landscaping-btn-text-wipe-dark {
+  background-image: linear-gradient(to right, #0b2518 50%, #a6d96a 50%);
+}
+
+/* Outline 2 button text gradient */
+.landscaping-btn-cta-outline2 .landscaping-btn-text-wipe-outline2 {
+  background-image: linear-gradient(to right, #dff2c8 50%, #0b2518 50%);
+}
+
+/* Hover effects */
+.landscaping-btn-cta:hover .landscaping-btn-text-wipe,
+.landscaping-btn-cta-outline:hover .landscaping-btn-text-wipe-outline,
+.landscaping-btn-cta-dark:hover .landscaping-btn-text-wipe-dark,
+.landscaping-btn-cta-outline2:hover .landscaping-btn-text-wipe-outline2,
+.banner-btn-outline:hover .landscaping-btn-text-wipe {
+  background-position: 0% 0;
+}
+
+/* Insurance stats metrics counter */
+
+.landscaping-heading-shape::after {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 46px;
+  height: 46px;
+  background-image: url("../images/landscaping-heading-badge.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.landscaping-heading-shape-green::after {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 46px;
+  height: 46px;
+  background-image: url("../images/landscaping-heading-badge-green.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .landscaping-heading-shape::after,
+  .landscaping-heading-shape-green::after {
+    top: -35px;
+    left: -25px;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landscaping-heading-shape::after,
+  .landscaping-heading-shape-green::after {
+    top: -40px;
+    left: -30px;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .landscaping-heading-shape::after,
+  .landscaping-heading-shape-green::after {
+    top: -80px;
+    left: -55px;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/*====== Client feedback area =====*/
+
+.landscaping-client-feedback
+  .landscaping-client-feedback-slider-wrap
+  .splide__slide {
+  opacity: 0.8;
+  transform: scale(0.93);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+.landscaping-client-feedback
+  .landscaping-client-feedback-slider-wrap
+  .splide__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+.landscaping-client-feedback
+  .landscaping-client-feedback-slider-wrap
+  .splide__slide.is-next {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (max-width: 767px) {
+  .landscaping-client-feedback
+    .landscaping-client-feedback-slider-wrap
+    .splide__slide.is-next {
+    opacity: 0.8;
+    transform: scale(0.93);
+  }
+}
+
+/* landscaping faq */
+.landscaping-faq-question-btn {
+  cursor: pointer;
+}
+
+/* Keep button background color matching the answer box (#304D36) when the item is open */
+.landscaping-faq-item.is-open .landscaping-faq-question-btn {
+  background-color: #304D36;
+}
+.landscaping-faq-item.is-open .landscaping-faq-question-text {
+  color: #a6d96a;
+}
+
+/* Icon transition states */
+.landscaping-faq-plus-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.landscaping-faq-minus-icon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.8);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.landscaping-faq-item.is-open .landscaping-faq-plus-icon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.8);
+}
+
+.landscaping-faq-item.is-open .landscaping-faq-minus-icon {
+  opacity: 1;
+  transform: rotate(135deg) scale(1);
+}
+
+/* Accordion grid animation */
+.landscaping-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.landscaping-faq-item.is-open .landscaping-faq-answer {
+  grid-template-rows: 1fr;
+}
+.landscaping-faq-answer-inner {
+  overflow: hidden;
+}
+
+/*  */
+
+
+
+
+
+/* slider card style  */
+
+
+ 
+    /* ============================================================
+       NICHE SLIDER  — ei block ta tomar project e copy koro
+       ============================================================ */
+    /* ---- fonts ---- */
+
+    .niche {
+      --edge: clamp(1rem, 7vw, 9rem);
+      --gap: 32px;
+      --per-view: 2.75;
+      --rise: clamp(56px, 9vh, 100px);
+      --end-space: 32px;
+      --card-w: calc((100vw - var(--edge)) / var(--per-view) - var(--gap));
+      position: relative;
+      background: #0E2A1E;
+      color: #fff;
+    }
+
+    /* shared card look, used by BOTH the desktop track and the Splide slides */
+    .niche-card { display: flex; flex-direction: column; }               /* overflow:hidden removed — text no longer gets invisibly clipped */
+    .niche-media { overflow: hidden; }                                    /* kept — needed for the object-fit:cover crop + rounded corner */
+    .niche-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .niche-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+
+    /* ================= DESKTOP (>=1024px) ================= */
+    .niche__desktop { display: block; }
+
+    .niche__pin {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-block: clamp(1.25rem, 6vh, 4.5rem);
+      overflow: hidden;
+    }
+  .niche__head { padding-left: calc(var(--edge) + 6rem); padding-right: var(--edge); flex: 0 0 auto; }
+
+  @media (max-width:1450px) {
+    .niche__head { padding-left: calc(var(--edge) - 3rem); padding-right: var(--edge); flex: 0 0 auto; }
+  }
+    
+    .niche__title {
+      margin: 0; max-width: 22ch; 
+    }
+    .niche__viewport { position: relative; flex: 1 1 0; min-height: 0; margin-top: clamp(1rem, 4vh, 3rem); }
+ .niche__track {
+  display: flex; align-items: flex-start; gap: var(--gap); height: 100%;
+  padding-left: calc(var(--edge) + 6rem); padding-right: calc(var(--edge) + var(--end-space));
+  will-change: transform;
+}
+  @media (max-width:1450px) {
+    .niche__track {
+  padding-left: calc(var(--edge) - 3rem); padding-right: calc(var(--edge) + var(--end-space));
+}
+  }
+    .niche__item { flex: 0 0 var(--card-w); width: var(--card-w);  will-change: transform; }
+    .niche__intro { display: flex; align-items: flex-start; }
+    .niche__item .niche-media { flex: 0 0 312px; }
+
+    @media (min-width: 1024px) and (max-height: 820px) {
+      .niche__pin { padding-block: clamp(1rem, 2.5vh, 1.5rem); }
+      .niche__badge { display: none; }
+      .niche__viewport { margin-top: .75rem; }
+      .niche { --rise: 48px; }
+      .niche__item .niche-media { flex-basis: 236px; }
+    }
+
+    /* ================= MOBILE + TABLET (<1024px): Splide ================= */
+    .niche__mobile { display: none; }
+
+    .niche__mobile-head { padding-inline: var(--edge); padding-top: 60px }
+    @media (max-width:640px) {
+      .niche__mobile-head {  padding-top: 48px }
+    }
+    .niche__mobile-head .niche__title { font-size: clamp(1.75rem, 6vw, 2.75rem); }
+    .niche__desc-mobile {
+      margin: 1rem 0 0; max-width: 62ch; font-family: 'Barlow', sans-serif;
+      font-size: .95rem; line-height: 1.65; color: rgba(255, 255, 255, .82);
+    }
+
+    .niche__splide {
+    padding-top: 1.75rem;
+    padding-bottom: 80px;
+}
+@media (max-width:640px) {
+      .niche__splide {
+    padding-top: 1.75rem;
+    padding-bottom: 60px;
+}
+}
+    .niche__splide .splide__slide .niche-card { height: 100%; }
+    .niche__splide .splide__slide .niche-media { height: clamp(11rem, 46vw, 15rem); }
+
+    /* Splide theme -> match the dark/green niche design */
+    .niche__splide .splide__track { padding-bottom: .5rem; }
+    .niche__splide .splide__arrows { padding-inline: var(--edge); }
+    .niche__splide .splide__arrow {
+      background: transparent; border: 1px solid rgba(255, 255, 255, .25);
+      width: 40px; height: 40px; opacity: 1;
+    }
+    .niche__splide .splide__arrow svg { fill: #fff; width: 16px; height: 16px; }
+    .niche__splide .splide__arrow:hover { border-color: #7ED957; background: rgba(126, 217, 87, .1); }
+    .niche__splide .splide__arrow:disabled { opacity: .3; }
+    .niche__splide .splide__pagination { bottom: 2.25rem; }
+    .niche__splide .splide__pagination__page {
+      background: rgba(255, 255, 255, .25); width: 8px; height: 8px; opacity: 1; margin: 3px;
+    }
+    .niche__splide .splide__pagination__page.is-active {
+      background: #7ED957; transform: none; width: 22px; border-radius: 999px;
+    }
+
+    @media (max-width: 1023px) {
+      .niche__desktop { display: none; }   /* fully removed from flow — cannot overlap anything below */
+      .niche__mobile { display: block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .niche__item { transform: none !important; }
+    }
